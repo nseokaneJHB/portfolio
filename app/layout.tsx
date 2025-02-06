@@ -6,6 +6,8 @@ import { Theme } from "@/providers/Theme"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 
+import { Analytics } from "@vercel/analytics/react"
+
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -35,6 +37,7 @@ const RootLayout = ({
           <Header />
           <main className="grow">{children}</main>
           <Footer />
+          <Analytics />
         </Theme>
       </body>
     </html>
