@@ -39,7 +39,7 @@ const RootLayout = ({
       >
         <Theme>
           <Header />
-          <main className="grow">{children}</main>
+          <main className="grow pb-24 pt-40">{children}</main>
           <Footer />
           <Analytics />
         </Theme>
