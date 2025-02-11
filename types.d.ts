@@ -1,5 +1,5 @@
 type ProjectMetadata = {
-  title?: string
+  title: string
   summary?: string
   image?: string
   author?: string

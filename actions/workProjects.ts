@@ -2,14 +2,16 @@ import path from "path"
 import matter from "gray-matter"
 import { promises as fs } from "fs"
 
-const rootDirectory = path.join(process.cwd(), "content", "projects")
+const rootDirectory = path.join(process.cwd(), "content", "work-projects")
 
 export type Project = {
   metadata: ProjectMetadata
   content: string
 }
 
-export async function getProjectBySlug(slug: string): Promise<Project | null> {
+export async function getWorkProjectBySlug(
+  slug: string
+): Promise<Project | null> {
   try {
     const filePath = path.join(rootDirectory, `${slug}.mdx`)
     const fileContent = await fs.readFile(filePath, { encoding: "utf8" })
@@ -21,12 +23,14 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
   }
 }
 
-export async function getProjects(limit?: number): Promise<ProjectMetadata[]> {
+export async function getWorkProjects(
+  limit?: number
+): Promise<ProjectMetadata[]> {
   try {
     const files = await fs.readdir(rootDirectory)
 
     const projects = await Promise.all(
-      files.map(async file => await getProjectMetadata(file))
+      files.map(async file => await getWorkProjectMetadata(file))
     )
 
     const sortedProjects = projects.sort((a, b) => {
@@ -42,7 +46,7 @@ export async function getProjects(limit?: number): Promise<ProjectMetadata[]> {
   }
 }
 
-export async function getProjectMetadata(
+export async function getWorkProjectMetadata(
   filepath: string
 ): Promise<ProjectMetadata> {
   try {

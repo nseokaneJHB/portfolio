@@ -7,6 +7,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
 const playfair = Playfair_Display({
@@ -29,21 +30,23 @@ const RootLayout = ({
   children: React.ReactNode
 }>) => {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={cn(
-          "flex min-h-screen flex-col font-sans antialiased",
-          inter.variable,
-          playfair.variable
-        )}
-      >
-        <Theme>
+    <html lang="en">
+      <Theme>
+        <body
+          suppressHydrationWarning
+          className={cn(
+            "flex min-h-screen flex-col font-sans antialiased",
+            inter.variable,
+            playfair.variable
+          )}
+        >
           <Header />
           <main className="grow pb-24 pt-40">{children}</main>
           <Footer />
           <Analytics />
-        </Theme>
-      </body>
+          <SpeedInsights />
+        </body>
+      </Theme>
     </html>
   )
 }

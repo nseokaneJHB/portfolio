@@ -13,13 +13,14 @@ export const Intro = () => {
         </p>
         <br />
         <p className="mt-3 font-light text-muted-foreground">
-          I also skate as a hobby and open for modelling/acting opportunities.
+          I skate for fun and open for modelling/acting opportunities.
         </p>
       </div>
       <div className="relative h-64 w-64 overflow-hidden rounded-full border bg-muted">
         <Image
           fill
           priority
+          sizes="16rem"
           src={autherImage}
           alt="Nolan Seokane"
           className="rounded-lg object-cover object-center transition-transform duration-500 group-hover:scale-105"

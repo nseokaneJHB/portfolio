@@ -1,15 +1,20 @@
 import { Suspense } from "react"
+
 import Link from "next/link"
 import Image from "next/image"
+import { notFound } from "next/navigation"
+
+import { ArrowLeftIcon } from "lucide-react"
+
+import { getSideProjectBySlug, getSideProjects } from "@/actions/sideProjects"
+
+import { MDXContent } from "@/components/mdx-content"
+import { Loading } from "@/components/loading"
 
 import { formatDate } from "@/lib/utils"
-import { ArrowLeftIcon } from "lucide-react"
-import { getProjectBySlug, getProjects } from "@/actions/projects"
-import { notFound } from "next/navigation"
-import { MDXContent } from "@/components/mdx-content"
 
 export const generateStaticParams = async () => {
-  const projects = await getProjects()
+  const projects = await getSideProjects()
   return projects.map(project => ({ slug: project.slug }))
 }
 
@@ -19,7 +24,7 @@ type ProjectProps = {
 
 const ProjectPage = async ({ params }: Awaited<ProjectProps>) => {
   const { slug } = await params
-  const project = await getProjectBySlug(slug)
+  const project = await getSideProjectBySlug(slug)
 
   if (!project) {
     notFound()
@@ -29,10 +34,10 @@ const ProjectPage = async ({ params }: Awaited<ProjectProps>) => {
   const { title, image, author, publishedAt } = metadata
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <section className="container max-w-3xl">
+    <Suspense fallback={<Loading />}>
+      <section className="container max-w-6xl">
         <Link
-          href="/projects"
+          href="/side-projects"
           className="mb-8 inline-flex items-center gap-2 text-sm font-light text-muted-foreground transition-colors hover:text-foreground"
         >
           <ArrowLeftIcon className="h-5 w-5" />
@@ -40,13 +45,8 @@ const ProjectPage = async ({ params }: Awaited<ProjectProps>) => {
         </Link>
 
         {image && (
-          <div className="relative mb-6 h-96 w-full overflow-hidden rounded-lg">
-            <Image
-              src={image}
-              alt={title || ""}
-              className="object-cover"
-              fill
-            />
+          <div className="relative mb-6 h-96 w-full overflow-hidden rounded-lg sm:h-[400px]">
+            <Image fill src={image} alt={title} className="object-cover" />
           </div>
         )}
 
