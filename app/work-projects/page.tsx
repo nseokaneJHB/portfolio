@@ -6,7 +6,10 @@ const WorkProjectsPage = async () => {
 
   return (
     <section className="container max-w-6xl">
-      <h1 className="title mb-12">Work Projects</h1>
+      <h1 className="title mb-4">Work Projects</h1>
+      <p className="mb-12 text-muted-foreground">
+        Projects I am/was contributing to at companies I work/worked for.
+      </p>
 
       {projects.length > 0 ? (
         <SideProjects projects={projects} />

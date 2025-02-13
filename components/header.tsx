@@ -11,6 +11,19 @@ import {
   navigationMenuTriggerStyle
 } from "@/components/ui/navigation-menu"
 
+import {
+  DropdownMenu,
+  DropdownMenuSub,
+  DropdownMenuItem,
+  DropdownMenuPortal,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent
+} from "@/components/ui/dropdown-menu"
+
+import { AlignJustify } from "lucide-react"
+
 import { ToggleTheme } from "@/components/toggle-theme"
 import { cn } from "@/lib/utils"
 
@@ -31,17 +44,17 @@ const URLS: URLMetadata[] = [
     title: "Projects",
     links: [
       {
+        link: "/work-projects",
+        label: "Work Projects",
+        description:
+          "Projects I am/was contributing to at companies I work/worked for."
+      },
+      {
         link: "/side-projects",
         label: "Side Projects",
         description:
-          "Projects where I learn, build for fun, or projects I have done freelancing."
+          "Projects where I learn, and build for fun, or projects I have done freelancing."
       }
-      // {
-      //   link: "/work-projects",
-      //   label: "Work Projects",
-      //   description:
-      //     "Projects I am/was involved in at companies I work/worked for."
-      // }
     ]
   },
   {
@@ -66,7 +79,7 @@ export const Header = () => {
           NS
         </Link>
 
-        <NavigationMenu>
+        <NavigationMenu className="hidden xs:block">
           <NavigationMenuList>
             {URLS.map(({ title, url, links }) => (
               <NavigationMenuItem key={title}>
@@ -75,7 +88,7 @@ export const Header = () => {
                     <NavigationMenuTrigger className="bg-transparent text-sm font-light text-muted-foreground transition-colors hover:text-foreground">
                       {title}
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent className="grid gap-2 p-3 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                    <NavigationMenuContent className="md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] grid gap-2 p-3">
                       {links.map(({ label, link, description }) => (
                         <Link
                           key={label}
@@ -94,12 +107,7 @@ export const Header = () => {
                     </NavigationMenuContent>
                   </>
                 ) : url ? (
-                  <Link
-                    passHref
-                    href={url}
-                    legacyBehavior
-                    title={`${title} Page`}
-                  >
+                  <Link href={url} title={`${title} Page`}>
                     <NavigationMenuLink
                       className={cn(
                         navigationMenuTriggerStyle(),
@@ -115,7 +123,58 @@ export const Header = () => {
           </NavigationMenuList>
         </NavigationMenu>
 
-        <ToggleTheme />
+        <div className="flex items-center gap-x-4">
+          <ToggleTheme />
+          <DropdownMenu>
+            <DropdownMenuTrigger className="rounded-md border p-1 outline-none xs:hidden">
+              <AlignJustify className="h-6 w-6" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="mr-[1rem] xs:hidden">
+              {URLS.map(({ title, url, links }) =>
+                links ? (
+                  <DropdownMenuSub key={title}>
+                    <DropdownMenuSubTrigger className="w-full cursor-pointer p-2">
+                      Projects
+                    </DropdownMenuSubTrigger>
+                    <DropdownMenuPortal>
+                      <DropdownMenuSubContent className="max-w-[150px]">
+                        {links.map(({ label, link, description }) => (
+                          <DropdownMenuItem
+                            key={label}
+                            className="cursor-pointer p-0"
+                          >
+                            <Link
+                              href={link}
+                              title={`${label} Page`}
+                              className="w-full space-y-2 p-2"
+                            >
+                              <span className="text-sm font-medium leading-none">
+                                {label}
+                              </span>
+                              <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                {description}
+                              </p>
+                            </Link>
+                          </DropdownMenuItem>
+                        ))}
+                      </DropdownMenuSubContent>
+                    </DropdownMenuPortal>
+                  </DropdownMenuSub>
+                ) : url ? (
+                  <DropdownMenuItem key={title} className="p-0">
+                    <Link
+                      href={url}
+                      title={`${title} Page`}
+                      className="w-full p-2"
+                    >
+                      {title}
+                    </Link>
+                  </DropdownMenuItem>
+                ) : null
+              )}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       </nav>
     </header>
   )

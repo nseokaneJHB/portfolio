@@ -11,6 +11,14 @@ const config = {
   ],
   prefix: "",
   theme: {
+    screens: {
+      xs: "400px",
+      sm: "667px",
+      md: "900px",
+      lg: "1200px",
+      xl: "1400px",
+      "2xl": "1512px"
+    },
     container: {
       center: true,
       padding: "2rem",
