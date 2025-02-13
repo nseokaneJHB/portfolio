@@ -45,8 +45,8 @@ export const Footer = () => {
   return (
     <footer className="py-8">
       <div className="container max-w-6xl">
-        <div className="md:flex md:items-center md:justify-between">
-          <div className="flex justify-center space-x-6 md:order-2">
+        <div className="sm:flex sm:items-center sm:justify-between">
+          <div className="flex justify-center space-x-6 sm:order-2">
             {navigation.map(item => (
               <a
                 key={item.name}
@@ -60,7 +60,7 @@ export const Footer = () => {
               </a>
             ))}
           </div>
-          <div className="mt-8 md:order-1 md:mt-0">
+          <div className="mt-8 sm:order-1 sm:mt-0">
             <p className="text-center text-xs leading-5 text-muted-foreground">
               &copy; {new Date().getFullYear()} Nolan Seokane. All rights
               reserved.

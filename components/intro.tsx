@@ -3,8 +3,8 @@ import autherImage from "@/public/images/me.png"
 
 export const Intro = () => {
   return (
-    <section className="flex flex-col-reverse items-start gap-x-10 gap-y-4 pb-24 md:flex-row md:items-center">
-      <div className="mt-2 flex-1 md:mt-0">
+    <section className="sm:flex-row flex flex-col-reverse items-center gap-x-10 gap-y-4 pb-24">
+      <div className="sm:mt-0 sm:text-start mt-2 flex-1 text-center">
         <h1 className="title no-underline">Hey, I&#39;m Nolan.</h1>
         <p className="mt-3 font-light text-muted-foreground">
           I&#39;m a software engineer based in Johannesburg, South Africa.
