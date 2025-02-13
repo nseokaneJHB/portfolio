@@ -16,7 +16,16 @@ export async function getWorkProjectBySlug(
     const filePath = path.join(rootDirectory, `${slug}.mdx`)
     const fileContent = await fs.readFile(filePath, { encoding: "utf8" })
     const { data, content } = matter(fileContent)
-    return { metadata: { ...data, title: data.title, slug }, content }
+    return {
+      metadata: {
+        ...data,
+        slug,
+        title: data.title,
+        site: data.site,
+        code: data.code
+      },
+      content
+    }
   } catch (error) {
     console.error("Error getting project by slug:", error)
     return null
@@ -54,9 +63,20 @@ export async function getWorkProjectMetadata(
     const filePath = path.join(rootDirectory, filepath)
     const fileContent = await fs.readFile(filePath, { encoding: "utf8" })
     const { data } = matter(fileContent)
-    return { ...data, title: data.title, slug }
+    return {
+      ...data,
+      slug,
+      title: data.title,
+      site: data.site,
+      code: data.code
+    }
   } catch (error) {
     console.error("Error getting project metadata:", error)
-    return { slug: filepath.replace(/\.mdx$/, ""), title: "" }
+    return {
+      slug: filepath.replace(/\.mdx$/, ""),
+      title: "",
+      site: "",
+      code: ""
+    }
   }
 }

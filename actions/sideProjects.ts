@@ -19,8 +19,10 @@ export async function getSideProjectBySlug(
     return {
       metadata: {
         ...data,
+        slug,
         title: data.title,
-        slug
+        site: data.site,
+        code: data.code
       },
       content
     }
@@ -61,9 +63,20 @@ export async function getSideProjectMetadata(
     const filePath = path.join(rootDirectory, filepath)
     const fileContent = await fs.readFile(filePath, { encoding: "utf8" })
     const { data } = matter(fileContent)
-    return { ...data, title: data.title, slug }
+    return {
+      ...data,
+      slug,
+      title: data.title,
+      site: data.site,
+      code: data.code
+    }
   } catch (error) {
     console.error("Error getting project metadata:", error)
-    return { slug: filepath.replace(/\.mdx$/, ""), title: "" }
+    return {
+      slug: filepath.replace(/\.mdx$/, ""),
+      title: "",
+      site: "",
+      code: ""
+    }
   }
 }
