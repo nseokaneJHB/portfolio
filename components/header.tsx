@@ -133,11 +133,11 @@ export const Header = () => {
               {URLS.map(({ title, url, links }) =>
                 links ? (
                   <DropdownMenuSub key={title}>
-                    <DropdownMenuSubTrigger className="w-full cursor-pointer p-2">
+                    <DropdownMenuSubTrigger className="w-full cursor-pointer p-3">
                       Projects
                     </DropdownMenuSubTrigger>
                     <DropdownMenuPortal>
-                      <DropdownMenuSubContent className="max-w-[150px]">
+                      <DropdownMenuSubContent className="max-w-[200px]">
                         {links.map(({ label, link, description }) => (
                           <DropdownMenuItem
                             key={label}
@@ -146,7 +146,7 @@ export const Header = () => {
                             <Link
                               href={link}
                               title={`${label} Page`}
-                              className="w-full space-y-2 p-2"
+                              className="w-full space-y-2 p-3"
                             >
                               <span className="text-sm font-medium leading-none">
                                 {label}
@@ -164,8 +164,8 @@ export const Header = () => {
                   <DropdownMenuItem key={title} className="p-0">
                     <Link
                       href={url}
+                      className="w-full p-3"
                       title={`${title} Page`}
-                      className="w-full p-2"
                     >
                       {title}
                     </Link>
