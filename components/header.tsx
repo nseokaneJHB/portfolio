@@ -69,7 +69,7 @@ const URLS: URLMetadata[] = [
 
 export const Header = () => {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-muted bg-background/75 py-6 backdrop-blur-sm">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-muted bg-background py-6 backdrop-blur-sm">
       <nav className="container flex max-w-6xl items-center justify-between">
         <Link
           href="/"
