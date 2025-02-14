@@ -1,18 +1,26 @@
+import Link from "next/link"
+
 import { JSX } from "react"
-import { highlight } from "sugar-high"
 import { MDXRemote, MDXRemoteProps } from "next-mdx-remote/rsc"
 
-import { Counter } from "@/components/counter"
+const ExternalLink = ({
+  href,
+  children,
+  ...props
+}: JSX.IntrinsicElements["a"]) => {
+  if (!href) {
+    return null
+  }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function Code({ children, ...props }: any) {
-  const codeHTML = highlight(children)
-  return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />
+  return (
+    <Link href={href} target="_blank" rel="noopener noreferrer" {...props}>
+      {children}
+    </Link>
+  )
 }
 
 const components = {
-  code: Code,
-  Counter
+  a: ExternalLink
 }
 
 export const MDXContent = (props: JSX.IntrinsicAttributes & MDXRemoteProps) => {
