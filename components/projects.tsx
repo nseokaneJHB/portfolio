@@ -3,7 +3,7 @@ import Link from "next/link"
 
 import { cn, formatDate } from "@/lib/utils"
 
-export const SideProjects = ({ projects }: { projects: ProjectMetadata[] }) => {
+export const Projects = ({ projects }: { projects: ProjectMetadata[] }) => {
   return (
     <ul
       className={cn(
@@ -15,7 +15,7 @@ export const SideProjects = ({ projects }: { projects: ProjectMetadata[] }) => {
     >
       {projects.map(project => (
         <li key={project.slug} className="group relative">
-          <Link href={`/side-projects/${project.slug}`}>
+          <Link href={`/${project.type}-projects/${project.slug}`}>
             {project.image && (
               <div className="relative min-h-[200px] overflow-hidden rounded-xl bg-muted">
                 <Image
@@ -38,6 +38,7 @@ export const SideProjects = ({ projects }: { projects: ProjectMetadata[] }) => {
                 {project.summary}
               </p>
               <p className="text-xs font-light text-muted-foreground">
+                {project.type === "work" ? "Joined Project In" : "Published On"}{" "}
                 {formatDate(project.publishedAt ?? "")}
               </p>
             </div>

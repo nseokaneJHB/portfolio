@@ -5,6 +5,10 @@ type ProjectMetadata = {
   author?: string
   publishedAt?: string
   slug: string
-  site: string
-  code: string
+  type: "side" | "work"
+}
+
+type ProjectWithContent = {
+  metadata: ProjectMetadata
+  content: string
 }

@@ -47,7 +47,7 @@ const URLS: URLMetadata[] = [
         link: "/work-projects",
         label: "Work Projects",
         description:
-          "Projects I am/was contributing to at companies I work/worked for."
+          "Work projects I am/was contributing to at companies I work/worked for."
       },
       {
         link: "/side-projects",

@@ -4,14 +4,9 @@ import { promises as fs } from "fs"
 
 const rootDirectory = path.join(process.cwd(), "content", "work-projects")
 
-export type Project = {
-  metadata: ProjectMetadata
-  content: string
-}
-
 export async function getWorkProjectBySlug(
   slug: string
-): Promise<Project | null> {
+): Promise<ProjectWithContent | null> {
   try {
     const filePath = path.join(rootDirectory, `${slug}.mdx`)
     const fileContent = await fs.readFile(filePath, { encoding: "utf8" })
@@ -20,9 +15,8 @@ export async function getWorkProjectBySlug(
       metadata: {
         ...data,
         slug,
-        title: data.title,
-        site: data.site,
-        code: data.code
+        type: "work",
+        title: data.title
       },
       content
     }
@@ -66,17 +60,15 @@ export async function getWorkProjectMetadata(
     return {
       ...data,
       slug,
-      title: data.title,
-      site: data.site,
-      code: data.code
+      type: "work",
+      title: data.title
     }
   } catch (error) {
     console.error("Error getting project metadata:", error)
     return {
-      slug: filepath.replace(/\.mdx$/, ""),
       title: "",
-      site: "",
-      code: ""
+      type: "work",
+      slug: filepath.replace(/\.mdx$/, "")
     }
   }
 }
