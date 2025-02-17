@@ -37,6 +37,7 @@ type URLMetadata = {
   url?: string
   title: string
   links?: LinksMetadata[]
+  target?: "_self" | "_blank"
 }
 
 const URLS: URLMetadata[] = [
@@ -63,7 +64,8 @@ const URLS: URLMetadata[] = [
   },
   {
     url: "/Nolan-Seokane-Software-Developer-CV.pdf",
-    title: "Download CV"
+    title: "Download CV",
+    target: "_blank"
   }
 ]
 
@@ -81,19 +83,20 @@ export const Header = () => {
 
         <NavigationMenu className="hidden xs:block">
           <NavigationMenuList>
-            {URLS.map(({ title, url, links }) => (
+            {URLS.map(({ title, url, links, target }) => (
               <NavigationMenuItem key={title}>
                 {links && links?.length > 0 ? (
                   <>
                     <NavigationMenuTrigger className="bg-transparent text-sm font-light text-muted-foreground transition-colors hover:text-foreground">
                       {title}
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent className="md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] grid gap-2 p-3">
+                    <NavigationMenuContent className="grid gap-2 p-3 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                       {links.map(({ label, link, description }) => (
                         <Link
                           key={label}
                           href={link}
                           title={`${label} Page`}
+                          target={target || "_self"}
                           className="block select-none space-y-2 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
                         >
                           <span className="text-sm font-medium leading-none">
@@ -107,7 +110,11 @@ export const Header = () => {
                     </NavigationMenuContent>
                   </>
                 ) : url ? (
-                  <Link href={url} title={`${title} Page`}>
+                  <Link
+                    href={url}
+                    title={`${title} Page`}
+                    target={target || "_self"}
+                  >
                     <NavigationMenuLink
                       className={cn(
                         navigationMenuTriggerStyle(),
@@ -130,7 +137,7 @@ export const Header = () => {
               <AlignJustify className="h-6 w-6" />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="mr-[1rem] xs:hidden">
-              {URLS.map(({ title, url, links }) =>
+              {URLS.map(({ title, url, links, target }) =>
                 links ? (
                   <DropdownMenuSub key={title}>
                     <DropdownMenuSubTrigger className="w-full cursor-pointer p-3">
@@ -146,6 +153,7 @@ export const Header = () => {
                             <Link
                               href={link}
                               title={`${label} Page`}
+                              target={target || "_self"}
                               className="w-full space-y-2 p-3"
                             >
                               <span className="text-sm font-medium leading-none">
@@ -166,6 +174,7 @@ export const Header = () => {
                       href={url}
                       className="w-full p-3"
                       title={`${title} Page`}
+                      target={target || "_self"}
                     >
                       {title}
                     </Link>
