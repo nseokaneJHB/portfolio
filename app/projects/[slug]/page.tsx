@@ -2,13 +2,13 @@ import { Suspense } from "react"
 
 import { notFound } from "next/navigation"
 
-import { getSideProjectBySlug, getSideProjects } from "@/actions/sideProjects"
+import { getProjectBySlug, getProjects } from "@/actions/projectsActions"
 
 import { Loading } from "@/components/loading"
 import { Project } from "@/components/project"
 
 export const generateStaticParams = async () => {
-  const projects = await getSideProjects()
+  const { projects } = await getProjects()
   return projects.map(project => ({ slug: project.slug }))
 }
 
@@ -18,7 +18,7 @@ type ProjectProps = {
 
 const ProjectPage = async ({ params }: Awaited<ProjectProps>) => {
   const { slug } = await params
-  const project = await getSideProjectBySlug(slug)
+  const project = await getProjectBySlug(slug)
 
   if (!project) {
     notFound()

@@ -44,7 +44,7 @@ const navigation = [
 export const Footer = () => {
   return (
     <footer className="py-8">
-      <div className="container max-w-6xl">
+      <div className="container max-w-7xl">
         <div className="sm:flex sm:items-center sm:justify-between">
           <div className="flex justify-center space-x-6 sm:order-2">
             {navigation.map(item => (
