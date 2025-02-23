@@ -26,19 +26,19 @@ export const ProjectCard = ({ project }: { project: ProjectMetadata }) => {
         <p className="mb-3 line-clamp-1 text-sm text-muted-foreground transition-colors duration-500 ease-linear group-hover:text-foreground">
           {project.summary}
         </p>
-        <div className="mb-3 flex gap-2">
+        <div className="mb-3 flex justify-center gap-2 sm:justify-start">
           <Link
             href={`/projects/${project.slug}`}
             className="rounded-md border bg-background p-2 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus-visible:outline-none"
           >
-            <Eye className="mx-auto h-6 w-6" />
+            <Eye className="mx-auto h-4 w-4" />
           </Link>
           <Link
             target="_blank"
             href={project.live}
             className="rounded-md border bg-background p-2 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus-visible:outline-none"
           >
-            <Earth className="mx-auto h-6 w-6" />
+            <Earth className="mx-auto h-4 w-4" />
           </Link>
           {project.code ? (
             <Link
@@ -46,7 +46,7 @@ export const ProjectCard = ({ project }: { project: ProjectMetadata }) => {
               href={project.code}
               className="rounded-md border bg-background p-2 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus-visible:outline-none"
             >
-              <Github className="mx-auto h-6 w-6" />
+              <Github className="mx-auto h-4 w-4" />
             </Link>
           ) : null}
         </div>
