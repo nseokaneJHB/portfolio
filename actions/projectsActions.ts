@@ -18,6 +18,7 @@ export const getProjectBySlug = async (
       metadata: {
         ...data,
         slug,
+        live: data.live,
         title: data.title,
         image: data.image,
         author: data.author,
@@ -42,6 +43,7 @@ export const getProjectMetadata = async (
     return {
       ...data,
       slug,
+      live: data.live,
       title: data.title,
       image: data.image,
       author: data.author,
