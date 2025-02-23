@@ -4,6 +4,8 @@ import { Resend } from "resend"
 
 import EmailTemplate from "@/emails/contact-email-template"
 
+import { getLabelFromOptions } from "@/lib/utils"
+import { SUBJECT_OPTIONS } from "@/lib/constants"
 import { ContactFormValidationSchema } from "@/lib/schema"
 
 const resend = new Resend(process.env.RESEND_API_KEY)
@@ -19,16 +21,18 @@ export const contact = async (payload: ContactFormValidationType) => {
 
   const to = ["nolanseokane@gmail.com"]
 
-  if (parse.data.sendCopy === true) {
-    to.push(parse.data.email)
+  const { email, subject, sendCopy } = parse.data
+
+  if (sendCopy === true) {
+    to.push(email)
   }
 
   try {
     const { data, error } = await resend.emails.send({
       to,
-      subject: parse.data.subject,
       from: process.env.RESEND_EMAIL!,
-      react: EmailTemplate(parse.data)
+      react: EmailTemplate(parse.data),
+      subject: getLabelFromOptions(subject, SUBJECT_OPTIONS)
     })
 
     if (error) {
