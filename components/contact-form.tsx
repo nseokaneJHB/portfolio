@@ -35,10 +35,10 @@ export const ContactForm = () => {
   const form = useForm<ContactFormValidationType>({
     resolver: zodResolver(ContactFormValidationSchema),
     defaultValues: {
-      name: "Nolan Kgotso",
-      email: "kgotsonolan@gmail.com",
-      subject: "other",
-      message: "Some message to test with",
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
       sendCopy: false
     }
   })
