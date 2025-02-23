@@ -29,14 +29,14 @@ export const ProjectCard = ({ project }: { project: ProjectMetadata }) => {
         <div className="mb-3 flex gap-2">
           <Link
             href={`/projects/${project.slug}`}
-            className="rounded-md border bg-background p-2 px-4 py-2 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus-visible:outline-none"
+            className="rounded-md border bg-background p-2 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus-visible:outline-none"
           >
             <Eye className="mx-auto h-6 w-6" />
           </Link>
           <Link
             target="_blank"
             href={project.live}
-            className="rounded-md border bg-background p-2 px-4 py-2 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus-visible:outline-none"
+            className="rounded-md border bg-background p-2 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus-visible:outline-none"
           >
             <Earth className="mx-auto h-6 w-6" />
           </Link>
@@ -44,7 +44,7 @@ export const ProjectCard = ({ project }: { project: ProjectMetadata }) => {
             <Link
               target="_blank"
               href={project.code}
-              className="rounded-md border bg-background p-2 px-4 py-2 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus-visible:outline-none"
+              className="rounded-md border bg-background p-2 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus-visible:outline-none"
             >
               <Github className="mx-auto h-6 w-6" />
             </Link>
