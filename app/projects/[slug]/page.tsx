@@ -2,10 +2,10 @@ import { Suspense } from "react"
 
 import { notFound } from "next/navigation"
 
-import { getProjectBySlug, getProjects } from "@/actions/projectsActions"
-
 import { Loading } from "@/components/loading"
 import { Project } from "@/components/project"
+
+import { getProjectBySlug, getProjects } from "@/actions/projectsActions"
 
 export const generateStaticParams = async () => {
   const { projects } = await getProjects()

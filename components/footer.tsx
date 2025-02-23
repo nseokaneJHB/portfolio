@@ -1,6 +1,7 @@
+import Link from "next/link"
 import { JSX, SVGProps } from "react"
 
-const navigation = [
+export const FOOTER_LINKS = [
   {
     name: "LinkedIn",
     href: "https://linkedin.com/in/nolan-seokane-6467a312a",
@@ -47,8 +48,8 @@ export const Footer = () => {
       <div className="container max-w-7xl">
         <div className="sm:flex sm:items-center sm:justify-between">
           <div className="flex justify-center space-x-6 sm:order-2">
-            {navigation.map(item => (
-              <a
+            {FOOTER_LINKS.map(item => (
+              <Link
                 key={item.name}
                 target="_blank"
                 href={item.href}
@@ -57,13 +58,12 @@ export const Footer = () => {
               >
                 <span className="sr-only">{item.name}</span>
                 <item.icon aria-hidden="true" className="h-5 w-5" />
-              </a>
+              </Link>
             ))}
           </div>
           <div className="mt-8 sm:order-1 sm:mt-0">
             <p className="text-center text-xs leading-5 text-muted-foreground">
-              &copy; {new Date().getFullYear()} Nolan Seokane. All rights
-              reserved.
+              &copy; 2025 Nolan Seokane. All rights reserved.
             </p>
           </div>
         </div>

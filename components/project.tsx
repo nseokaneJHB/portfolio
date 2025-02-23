@@ -24,13 +24,11 @@ export const Project = ({ metadata, content }: ProjectWithContent) => {
         <Image fill src={image} alt={title} className="object-cover" />
       </div>
 
-      <div>
-        <h1 className="title">{title}</h1>
-        <p className="mt-3 text-xs text-muted-foreground">
-          {author} / {type === "work" ? "Joined Project In" : "Published At"}{" "}
-          {formatDate(publishedAt)}
-        </p>
-      </div>
+      <h1 className="title">{title}</h1>
+      <p className="mt-3 text-xs text-muted-foreground">
+        {author} / {type === "work" ? "Joined Project In" : "Published At"}{" "}
+        {formatDate(publishedAt)}
+      </p>
 
       <main className="prose mt-16 dark:prose-invert">
         <MDXContent source={content} />

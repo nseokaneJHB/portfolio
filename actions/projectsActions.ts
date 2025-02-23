@@ -1,3 +1,5 @@
+"use server"
+
 import path from "path"
 import matter from "gray-matter"
 import { promises as fs } from "fs"
@@ -54,8 +56,8 @@ export const getProjectMetadata = async (
 
 export const getProjects = async (
   limit: number = 0,
-  filter?: ProjectMetadata["type"]
-): Promise<{ projects: ProjectMetadata[]; total: number; limit: number }> => {
+  filter: ProjectMetadata["type"] | "" = ""
+): Promise<PageProjects> => {
   try {
     const files = await fs.readdir(rootDirectory)
 
@@ -77,17 +79,23 @@ export const getProjects = async (
       projects = projects.filter(project => project.type === filter)
     }
 
+    const total = cleanedProjects.length
+    const hasMore = limit > 0 && projects.length > limit
+    projects = limit ? projects.slice(0, limit) : projects
+
     return {
-      limit: limit || 0,
-      total: cleanedProjects.length,
-      projects: limit ? projects.slice(0, limit) : projects
+      limit,
+      total,
+      hasMore,
+      projects
     }
   } catch (error) {
     console.error("Error getting projects:", error)
     return {
-      limit: 0,
+      limit,
       total: 0,
-      projects: []
+      projects: [],
+      hasMore: false
     }
   }
 }

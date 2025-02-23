@@ -8,6 +8,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 
 import { Theme } from "@/providers/Theme"
+import { ReactQueryClientProvider } from "@/providers/ReactQueryClientProvider"
 
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
@@ -44,13 +45,15 @@ const RootLayout = ({
         )}
       >
         <Theme>
-          <NuqsAdapter>
-            <Header />
-            <main className="grow pb-24 pt-40">{children}</main>
-            <Footer />
-            <Analytics />
-            <SpeedInsights />
-          </NuqsAdapter>
+          <ReactQueryClientProvider>
+            <NuqsAdapter>
+              <Header />
+              <main className="grow pb-24 pt-40">{children}</main>
+              <Footer />
+              <Analytics />
+              <SpeedInsights />
+            </NuqsAdapter>
+          </ReactQueryClientProvider>
         </Theme>
       </body>
     </html>

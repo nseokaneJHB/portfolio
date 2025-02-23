@@ -1,10 +1,38 @@
+import { cn } from "@/lib/utils"
 import { LoaderCircle } from "lucide-react"
 
-export const Loading = () => {
+type LoadingProps = {
+  title?: string
+  size?: "sm" | "lg"
+  className?: string
+}
+
+export const Loading = ({
+  className,
+  size = "lg",
+  title = "Loading..."
+}: LoadingProps) => {
   return (
-    <section className="container mt-24 flex max-w-7xl animate-pulse flex-col items-center justify-center gap-4">
-      <LoaderCircle className="h-24 w-24 animate-spin" />
-      <p className="text-3xl font-bold tracking-tight">Loading...</p>
+    <section
+      className={cn(
+        "container mt-24 flex max-w-7xl animate-pulse flex-col items-center justify-center gap-4",
+        className
+      )}
+    >
+      <LoaderCircle
+        className={cn("animate-spin", {
+          "h-10 w-10": size === "sm",
+          "h-24 w-24": size === "lg"
+        })}
+      />
+      <p
+        className={cn("font-bold tracking-tight", {
+          "text-md": size === "sm",
+          "text-3xl": size === "lg"
+        })}
+      >
+        {title}
+      </p>
     </section>
   )
 }

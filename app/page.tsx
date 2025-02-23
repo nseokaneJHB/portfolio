@@ -1,13 +1,10 @@
 import Link from "next/link"
 
-import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu"
-
 import { Intro } from "@/components/intro"
 import { Stack } from "@/components/stack"
 import { Projects } from "@/components/projects"
 
 import { getProjects } from "@/actions/projectsActions"
-import { cn } from "@/lib/utils"
 
 const HomePage = async () => {
   const { projects, total, limit } = await getProjects(3)
@@ -16,9 +13,9 @@ const HomePage = async () => {
     <div className="container max-w-7xl">
       <Intro />
 
-      <div className="flex-1 pb-20 text-center sm:mt-0 sm:text-start">
-        <h1 className="title no-underline">Intro</h1>
-        <p className="mt-3 font-light text-muted-foreground">
+      <div className="mb-16 flex-1 text-center sm:text-start">
+        <h1 className="title mb-6">Intro</h1>
+        <p className="font-light text-muted-foreground">
           Experienced Software Developer with years of expertise in Python,
           JavaScript, and SQL. Skilled in creating scalable systems,
           maintaining, debugging, and leading teams. Strong in collaboration and
@@ -29,9 +26,9 @@ const HomePage = async () => {
       <Stack />
 
       {projects.length > 0 && (
-        <>
-          <h1 className="title no-underline">Projects</h1>
-          <p className="my-3 font-light text-muted-foreground">
+        <div className="mb-16 flex-1 text-center sm:text-start">
+          <h1 className="title mb-6">Projects</h1>
+          <p className="mb-6 font-light text-muted-foreground">
             These are the projects where I learn, build for fun, projects I have
             done freelancing, projects I contributed to at companies I worked
             for and projects I am contributing to currently
@@ -40,14 +37,11 @@ const HomePage = async () => {
 
           <Link
             href="/projects"
-            className={cn(
-              navigationMenuTriggerStyle(),
-              "mx-auto mt-6 block h-fit border px-6 py-4 text-center"
-            )}
+            className="mt-6 block h-fit w-full rounded-md border bg-background px-4 py-2 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus-visible:outline-none xs:mx-auto xs:w-fit"
           >
             There&#39;s {total - limit} more projects...
           </Link>
-        </>
+        </div>
       )}
     </div>
   )

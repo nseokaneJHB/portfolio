@@ -13,9 +13,9 @@ const STACK = [
 
 export const Stack = () => {
   return (
-    <div className="sm:mt-0 sm:text-start flex-1 pb-20 text-center">
-      <h1 className="title no-underline">Main Stack</h1>
-      <div className="sm:justify-start mt-3 flex flex-wrap justify-center gap-4">
+    <div className="mb-16 flex-1 text-center sm:mt-0 sm:text-start">
+      <h1 className="title mb-6">Main Stack</h1>
+      <div className="flex flex-wrap justify-center gap-4 sm:justify-start">
         {STACK.map(skill => (
           <div
             key={skill.toLowerCase()}

@@ -76,7 +76,7 @@
 
 @layer base {
   * {
-    @apply border-border p-0 m-0;
+    @apply border-border p-0 m-0 box-border;
   }
 
   body {
