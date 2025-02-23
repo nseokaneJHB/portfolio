@@ -2,6 +2,8 @@
 import { z } from "zod"
 import { Resend } from "resend"
 
+import EmailTemplate from "@/emails/contact-email-template"
+
 import { ContactFormValidationSchema } from "@/lib/schema"
 
 const resend = new Resend(process.env.RESEND_API_KEY)
@@ -26,7 +28,7 @@ export const contact = async (payload: ContactFormValidationType) => {
       to,
       subject: parse.data.subject,
       from: process.env.RESEND_EMAIL!,
-      text: `New email from ${parse.data.name}!<br /><br />Contact ${parse.data.name} on this email address ${parse.data.email} for further contact.`
+      react: EmailTemplate(parse.data)
     })
 
     if (error) {
