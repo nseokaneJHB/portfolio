@@ -32,7 +32,7 @@ export const contact = async (payload: ContactFormValidationType) => {
       to,
       from: process.env.RESEND_EMAIL!,
       react: EmailTemplate(parse.data),
-      subject: getLabelFromOptions(subject, SUBJECT_OPTIONS)
+      subject: `${subject === "other" ? "Other Opportunity" : getLabelFromOptions(subject, SUBJECT_OPTIONS)} from ${email}`
     })
 
     if (error) {
