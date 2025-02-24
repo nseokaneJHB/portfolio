@@ -70,11 +70,11 @@ export const InputWrapper = <T extends FieldValues>(
                 {...field}
                 placeholder={props.placeholder}
                 type={props.inputType || "text"}
-                className="h-fit w-full rounded-lg py-4 text-sm"
+                className="h-fit w-full rounded-lg py-4"
               />
             ) : props.type === "select" ? (
               <Select defaultValue={field.value} onValueChange={field.onChange}>
-                <SelectTrigger className="h-fit w-full rounded-lg py-4 text-sm">
+                <SelectTrigger className="h-fit w-full rounded-lg py-4 text-base md:text-sm">
                   <SelectValue placeholder={props.placeholder} />
                 </SelectTrigger>
                 <SelectContent>
@@ -82,7 +82,7 @@ export const InputWrapper = <T extends FieldValues>(
                     <SelectItem
                       key={option.value}
                       value={option.value}
-                      className="h-fit py-4"
+                      className="h-fit py-4 text-base md:text-sm"
                     >
                       {option.label}
                     </SelectItem>
@@ -94,7 +94,7 @@ export const InputWrapper = <T extends FieldValues>(
                 {...field}
                 rows={props.rows}
                 placeholder={props.placeholder}
-                className="w-full rounded-lg py-4 text-sm"
+                className="w-full rounded-lg py-4"
               />
             ) : null}
           </FormControl>

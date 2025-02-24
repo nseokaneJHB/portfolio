@@ -47,11 +47,7 @@ export const Header = () => {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-muted bg-background py-6 backdrop-blur-sm">
       <nav className="container flex max-w-7xl items-center justify-between">
-        <Link
-          href="/"
-          title="Home Page"
-          className="font-serif text-3xl font-bold"
-        >
+        <Link href="/" title="Home" className="font-serif text-3xl font-bold">
           NS
         </Link>
 
@@ -89,7 +85,7 @@ export const Header = () => {
                 >
                   <Link
                     href={url}
-                    title={`${title} Page`}
+                    title={title}
                     target={target || "_self"}
                     className={cn(
                       navigationMenuTriggerStyle(),

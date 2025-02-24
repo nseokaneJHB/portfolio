@@ -110,6 +110,7 @@ export const ContactForm = () => {
         </div>
 
         <Button
+          size="lg"
           type="submit"
           disabled={mutation.isPending}
           className="flex w-full items-center gap-2"

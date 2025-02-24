@@ -44,15 +44,16 @@ export const FOOTER_LINKS = [
 
 export const Footer = () => {
   return (
-    <footer className="py-8">
+    <footer className="border-t py-8">
       <div className="container max-w-7xl">
-        <div className="sm:flex sm:items-center sm:justify-between">
-          <div className="flex justify-center space-x-6 sm:order-2">
+        <div className="flex flex-col items-center gap-y-4 xs:flex-row xs:justify-between">
+          <div className="flex justify-center space-x-6 xs:order-2">
             {FOOTER_LINKS.map(item => (
               <Link
                 key={item.name}
                 target="_blank"
                 href={item.href}
+                title={item.name}
                 rel="noreferrer noopener"
                 className="text-muted-foreground hover:text-foreground"
               >
@@ -61,11 +62,9 @@ export const Footer = () => {
               </Link>
             ))}
           </div>
-          <div className="mt-8 sm:order-1 sm:mt-0">
-            <p className="text-center text-xs leading-5 text-muted-foreground">
-              &copy; 2025 Nolan Seokane. All rights reserved.
-            </p>
-          </div>
+          <p className="text-center text-sm leading-5 text-muted-foreground xs:order-1">
+            &copy; 2025 Nolan Seokane. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

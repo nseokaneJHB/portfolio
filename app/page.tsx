@@ -26,7 +26,7 @@ const HomePage = async () => {
       <Stack />
 
       {projects.length > 0 && (
-        <div className="mb-16 flex-1 text-center sm:text-start">
+        <div className="flex-1 text-center sm:text-start">
           <h1 className="title mb-6">Projects</h1>
           <p className="mb-6 font-light text-muted-foreground">
             These are the projects where I learn, build for fun, projects I have
@@ -36,6 +36,7 @@ const HomePage = async () => {
           <Projects projects={projects} />
 
           <Link
+            title="Projects"
             href="/projects"
             className="mt-6 block h-fit w-full rounded-md border bg-background px-4 py-2 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus-visible:outline-none xs:mx-auto xs:w-fit"
           >

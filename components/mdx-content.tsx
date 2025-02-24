@@ -13,7 +13,13 @@ const ExternalLink = ({
   }
 
   return (
-    <Link href={href} target="_blank" rel="noopener noreferrer" {...props}>
+    <Link
+      href={href}
+      title="Project"
+      target="_blank"
+      rel="noopener noreferrer"
+      {...props}
+    >
       {children}
     </Link>
   )

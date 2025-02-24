@@ -21,6 +21,7 @@ const NotFoundPage = () => {
             <div className="mt-10 flex space-x-3 sm:border-l sm:border-transparent sm:pl-6">
               <Link
                 href="/"
+                title="Back"
                 className="inline-flex items-center gap-3 text-muted-foreground transition-colors hover:text-foreground"
               >
                 <ArrowLeftIcon className="h-5 w-5" />

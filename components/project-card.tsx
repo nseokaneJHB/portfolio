@@ -7,8 +7,8 @@ import { formatDate } from "@/lib/utils"
 
 export const ProjectCard = ({ project }: { project: ProjectMetadata }) => {
   return (
-    <div className="group rounded-xl border shadow-sm shadow-muted-foreground/10 transition-transform duration-500 hover:scale-105">
-      <div className="relative min-h-[200px] overflow-hidden rounded-t-xl bg-muted">
+    <div className="group w-full rounded-xl border shadow-sm shadow-muted-foreground/10 transition-transform duration-500 hover:scale-105">
+      <div className="relative min-h-[200px] w-full overflow-hidden rounded-t-xl bg-muted">
         <Image
           fill
           priority
@@ -28,6 +28,7 @@ export const ProjectCard = ({ project }: { project: ProjectMetadata }) => {
         </p>
         <div className="mb-3 flex justify-center gap-2 sm:justify-start">
           <Link
+            title="More Details"
             href={`/projects/${project.slug}`}
             className="rounded-md border bg-background p-2 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus-visible:outline-none"
           >
@@ -36,6 +37,7 @@ export const ProjectCard = ({ project }: { project: ProjectMetadata }) => {
           <Link
             target="_blank"
             href={project.live}
+            title="Live Website"
             className="rounded-md border bg-background p-2 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus-visible:outline-none"
           >
             <Earth className="mx-auto h-4 w-4" />
@@ -44,6 +46,7 @@ export const ProjectCard = ({ project }: { project: ProjectMetadata }) => {
             <Link
               target="_blank"
               href={project.code}
+              title="Website Code"
               className="rounded-md border bg-background p-2 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus-visible:outline-none"
             >
               <Github className="mx-auto h-4 w-4" />

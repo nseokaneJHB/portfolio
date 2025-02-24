@@ -32,8 +32,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   width: "device-width",
-  initialScale: 1,
-  maximumScale: 1
+  initialScale: 1
 }
 
 const RootLayout = ({
@@ -54,7 +53,7 @@ const RootLayout = ({
           <ReactQueryClientProvider>
             <NuqsAdapter>
               <Header />
-              <main className="grow pb-24 pt-40">{children}</main>
+              <main className="grow pb-16 pt-40">{children}</main>
               <Footer />
               <Analytics />
               <SpeedInsights />

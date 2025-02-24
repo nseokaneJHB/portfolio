@@ -10,16 +10,19 @@ import { ContactForm } from "@/components/contact-form"
 const ContactPage = () => {
   const SOCIAL_LINKS = [
     {
+      name: "Email",
       label: "nolanseokane@gmail.com",
       icon: <Mail className="h-6 w-6" />,
       link: "mailto:nolanseokane@gmail.com"
     },
     {
+      name: "Github",
       label: "github.com/nseokane",
       icon: <Github className="h-6 w-6" />,
       link: "https://github.com/nseokane"
     },
     {
+      name: "LinkedIn",
       label: "linkedin.com/in/nolan-seokane",
       icon: <Linkedin className="h-6 w-6" />,
       link: "https://www.linkedin.com/in/nolan-seokane-6467a312a/"
@@ -44,14 +47,17 @@ const ContactPage = () => {
         <div className="mb-16 rounded-lg bg-muted/50 px-6 py-4">
           <h1 className="mb-6 font-serif text-xl font-bold">Quick Connect</h1>
 
-          {SOCIAL_LINKS.map(({ link, label, icon }) => (
+          {SOCIAL_LINKS.map(({ link, label, icon, name }) => (
             <Link
               key={label}
               href={link}
+              title={name}
               className="mb-3 flex items-center gap-2 text-muted-foreground hover:text-sky-600"
             >
-              {icon}
-              <p className="text-start">{label}</p>
+              <span>{icon}</span>
+              <p className="overflow-hidden truncate whitespace-nowrap text-start">
+                {label}
+              </p>
             </Link>
           ))}
 

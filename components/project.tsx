@@ -13,6 +13,7 @@ export const Project = ({ metadata, content }: ProjectWithContent) => {
   return (
     <section className="container max-w-7xl">
       <Link
+        title="Back"
         href="/projects"
         className="mb-8 inline-flex items-center gap-2 text-sm font-light text-muted-foreground transition-colors hover:text-foreground"
       >
