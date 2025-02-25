@@ -1,7 +1,13 @@
 import { Suspense } from "react"
 
+import { Metadata } from "next"
+
 import { Loading } from "@/components/loading"
 import { ProjectsFilters } from "@/components/projects-filters"
+
+export const metadata: Metadata = {
+  title: "Projects"
+}
 
 const ProjectsPage = async () => {
   return (

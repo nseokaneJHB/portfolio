@@ -7,7 +7,7 @@ import { formatDate } from "@/lib/utils"
 
 export const ProjectCard = ({ project }: { project: ProjectMetadata }) => {
   return (
-    <div className="group w-full rounded-xl border shadow-sm shadow-muted-foreground/10 transition-transform duration-500 hover:scale-105">
+    <div className="group w-full rounded-xl border shadow-sm shadow-muted-foreground/10">
       <div className="relative min-h-[200px] w-full overflow-hidden rounded-t-xl bg-muted">
         <Image
           fill
@@ -15,7 +15,7 @@ export const ProjectCard = ({ project }: { project: ProjectMetadata }) => {
           sizes="180px"
           src={project.image}
           alt={project.title}
-          className="rounded-t-lg object-cover object-center transition-transform duration-500 group-hover:scale-105 group-hover:delay-100"
+          className="rounded-t-lg object-cover object-center"
         />
       </div>
 

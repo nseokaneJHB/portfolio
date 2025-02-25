@@ -3,14 +3,23 @@
 import path from "path"
 import matter from "gray-matter"
 import { promises as fs } from "fs"
+import { toTitleCase } from "@/lib/utils"
 
 const rootDirectory = path.join(process.cwd(), "content")
 
 export const getProjectBySlug = async (
   slug: string
 ): Promise<ProjectWithContent | null> => {
+  const filePath = path.join(rootDirectory, `${slug}.mdx`)
+
   try {
-    const filePath = path.join(rootDirectory, `${slug}.mdx`)
+    await fs.access(filePath)
+  } catch {
+    console.warn(`${toTitleCase(slug)} not found: ${filePath}`)
+    return null
+  }
+
+  try {
     const fileContent = await fs.readFile(filePath, { encoding: "utf8" })
     const { data, content } = matter(fileContent)
     return {
@@ -99,5 +108,31 @@ export const getProjects = async (
       projects: [],
       hasMore: false
     }
+  }
+}
+
+export const getProjectsSlugs = async () => {
+  try {
+    const files = await fs.readdir(rootDirectory)
+    const rawProjects = await Promise.all(
+      files.map(async file => await getProjectMetadata(file))
+    )
+
+    return rawProjects
+      .filter((project): project is ProjectMetadata => project !== null)
+      .map(project => {
+        return {
+          slug: project.slug,
+          publishedAt: project.publishedAt
+        }
+      })
+      .sort((a, b) => {
+        const dateA = new Date(a.publishedAt ?? "")
+        const dateB = new Date(b.publishedAt ?? "")
+        return dateB.getTime() - dateA.getTime()
+      })
+  } catch (error) {
+    console.error("Error getting projects slugs:", error)
+    return []
   }
 }

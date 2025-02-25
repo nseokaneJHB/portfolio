@@ -1,3 +1,4 @@
+import { Metadata } from "next"
 import Link from "next/link"
 
 import { Intro } from "@/components/intro"
@@ -5,6 +6,10 @@ import { Stack } from "@/components/stack"
 import { Projects } from "@/components/projects"
 
 import { getProjects } from "@/actions/projectsActions"
+
+export const metadata: Metadata = {
+  title: "Nolan Seokane"
+}
 
 const HomePage = async () => {
   const { projects, total, limit } = await getProjects(3)

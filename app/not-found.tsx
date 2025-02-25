@@ -1,7 +1,13 @@
+import { Metadata } from "next"
 import Link from "next/link"
+
 import { ArrowLeftIcon } from "lucide-react"
 
-const NotFoundPage = () => {
+export const metadata: Metadata = {
+  title: "Not Found"
+}
+
+const NotFoundPage = async () => {
   return (
     <section className="min-h-full px-4 sm:px-6 sm:py-24 md:grid md:place-items-center lg:px-8">
       <div className="mx-auto max-w-max">

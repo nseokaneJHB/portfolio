@@ -1,5 +1,6 @@
 import { Suspense } from "react"
 
+import { Metadata } from "next"
 import { notFound } from "next/navigation"
 
 import { Loading } from "@/components/loading"
@@ -12,11 +13,34 @@ export const generateStaticParams = async () => {
   return projects.map(project => ({ slug: project.slug }))
 }
 
-type ProjectProps = {
+type ProjectPageProps = {
   params: Promise<{ slug: string }>
 }
 
-const ProjectPage = async ({ params }: Awaited<ProjectProps>) => {
+export const generateMetadata = async ({
+  params
+}: ProjectPageProps): Promise<Metadata> => {
+  const { slug } = await params
+  const project = await getProjectBySlug(slug)
+
+  if (!project) {
+    notFound()
+  }
+
+  return {
+    title: project.metadata.title,
+    description: project.metadata.summary,
+    openGraph: {
+      images: [
+        {
+          url: project.metadata.image
+        }
+      ]
+    }
+  }
+}
+
+const ProjectPage = async ({ params }: Awaited<ProjectPageProps>) => {
   const { slug } = await params
   const project = await getProjectBySlug(slug)
 
