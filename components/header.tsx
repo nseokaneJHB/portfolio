@@ -1,5 +1,8 @@
-import Link from "next/link"
 import React from "react"
+
+import Link from "next/link"
+
+import { AlignJustify } from "lucide-react"
 
 import {
   NavigationMenu,
@@ -16,9 +19,8 @@ import {
   DropdownMenuContent
 } from "@/components/ui/dropdown-menu"
 
-import { AlignJustify } from "lucide-react"
-
 import { ToggleTheme } from "@/components/toggle-theme"
+import { Logo } from "@/components/logo"
 import { cn } from "@/lib/utils"
 
 type URLMetadata = {
@@ -45,10 +47,14 @@ const URLS: URLMetadata[] = [
 
 export const Header = () => {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-muted bg-background py-6 backdrop-blur-sm">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-muted bg-background py-6 shadow backdrop-blur-sm">
       <nav className="container flex max-w-7xl items-center justify-between">
-        <Link href="/" title="Home" className="font-serif text-3xl font-bold">
-          NS
+        <Link
+          href="/"
+          title="Home"
+          className="transform transition-transform duration-300 ease-linear hover:-scale-x-100"
+        >
+          <Logo />
         </Link>
 
         <NavigationMenu className="hidden xs:block">
