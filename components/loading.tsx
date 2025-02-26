@@ -22,13 +22,13 @@ export const Loading = ({
       <LoaderCircle
         className={cn("animate-spin", {
           "h-10 w-10": size === "sm",
-          "h-24 w-24": size === "lg"
+          "h-10 w-10 sm:h-24 sm:w-24": size === "lg"
         })}
       />
       <p
-        className={cn("font-bold tracking-tight", {
+        className={cn("text-center font-bold tracking-tight", {
           "text-md": size === "sm",
-          "text-3xl": size === "lg"
+          "text-md sm:text-3xl": size === "lg"
         })}
       >
         {title}
