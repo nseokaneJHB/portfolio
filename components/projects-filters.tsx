@@ -6,9 +6,9 @@ import { useQuery, keepPreviousData } from "@tanstack/react-query"
 import { Button } from "@/components/ui/button"
 import { Projects } from "@/components/projects"
 import { Loading } from "@/components/loading"
+import { Filters } from "@/components/filters"
 
-import { PROJECT_TYPE_FILTERS, DEFAULT_PROJECT_LIMIT } from "@/lib/constants"
-import { cn, toSlug, toTitleCase } from "@/lib/utils"
+import { DEFAULT_PROJECT_LIMIT } from "@/lib/constants"
 
 import { getProjects } from "@/actions/projectsActions"
 
@@ -49,35 +49,12 @@ export const ProjectsFilters = () => {
 
   return (
     <>
-      <div className="mb-12 flex flex-col items-center justify-between gap-4 sm:flex-row">
-        <p className="text-foreground">Total Projects: {data?.total || 0}</p>
-        <div className="flex w-full flex-col items-center justify-center gap-2 xs:flex-row sm:w-fit">
-          <p className="text-foreground">Filters:</p>
-          {PROJECT_TYPE_FILTERS.map(type => {
-            const normalizeType =
-              type.toLowerCase() !== "all" ? type.toLowerCase() : null
-
-            return type ? (
-              <Button
-                key={toSlug(type)}
-                disabled={isFetching}
-                onClick={async () =>
-                  await setProjectType(normalizeType as ProjectType)
-                }
-                className={cn(
-                  "group w-full rounded-md border bg-background text-muted-foreground shadow-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus-visible:outline-none xs:w-fit",
-                  {
-                    "bg-accent text-accent-foreground":
-                      normalizeType === projectType || normalizeType === "all"
-                  }
-                )}
-              >
-                {toTitleCase(type)} Projects
-              </Button>
-            ) : null
-          })}
-        </div>
-      </div>
+      <Filters
+        isFetching={isFetching}
+        total={data?.total || 0}
+        projectType={projectType}
+        setProjectType={setProjectType}
+      />
 
       {isLoading ? (
         <Loading title={`Loading ${projectType || "all"} projects...`} />
@@ -94,7 +71,7 @@ export const ProjectsFilters = () => {
             ) : (
               <Button
                 onClick={async () => await setProjectLimit(prev => prev + 3)}
-                className="mt-6 block h-fit w-full rounded-md border bg-background px-4 py-2 text-muted-foreground shadow-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none focus-visible:outline-none xs:mx-auto xs:w-fit"
+                className="mx-auto mt-6 block h-fit w-fit rounded-lg border bg-background p-4 text-sm font-medium text-muted-foreground !shadow-none transition-colors hover:bg-accent hover:text-accent-foreground"
               >
                 Load more {projectType} projects
               </Button>

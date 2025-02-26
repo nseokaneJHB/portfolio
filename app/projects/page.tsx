@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const ProjectsPage = async () => {
   return (
     <Suspense fallback={<Loading />}>
-      <section className="container max-w-7xl text-center sm:text-start">
+      <section className="container max-w-7xl">
         <h1 className="title mb-6">Projects</h1>
         <p className="mb-12 text-muted-foreground">
           These are the projects where I learn, build for fun, projects I have

@@ -113,7 +113,7 @@ export const ContactForm = () => {
           size="lg"
           type="submit"
           disabled={mutation.isPending}
-          className="flex w-full items-center gap-2"
+          className="flex h-fit w-full items-center gap-2 rounded-lg p-4"
         >
           <Send />
           Send Message

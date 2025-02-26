@@ -49,11 +49,7 @@ export const Header = () => {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-muted bg-background py-6 shadow backdrop-blur-sm">
       <nav className="container flex max-w-7xl items-center justify-between">
-        <Link
-          href="/"
-          title="Home"
-          className="transform transition-transform duration-300 ease-linear hover:-scale-x-100"
-        >
+        <Link href="/" title="Home">
           <Logo />
         </Link>
 
@@ -80,7 +76,7 @@ export const Header = () => {
         <div className="flex items-center gap-x-4">
           <ToggleTheme />
           <DropdownMenu>
-            <DropdownMenuTrigger className="rounded-md border p-1 outline-none xs:hidden">
+            <DropdownMenuTrigger className="rounded-md border p-1 text-muted-foreground outline-none transition-colors hover:bg-accent hover:text-foreground xs:hidden">
               <AlignJustify className="h-6 w-6" />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="mr-[1rem] w-[170px] shadow-sm shadow-muted-foreground xs:hidden">
