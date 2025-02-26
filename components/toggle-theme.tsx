@@ -7,8 +7,6 @@ import { MoonIcon, SunIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 
-import { cn } from "@/lib/utils"
-
 export const ToggleTheme = () => {
   const { setTheme, resolvedTheme } = useTheme()
   const [mount, setMount] = useState<boolean>(false)
@@ -21,9 +19,6 @@ export const ToggleTheme = () => {
     return <div className="w-9" />
   }
 
-  const iconClass =
-    "!h-6 !w-6 transform transition-transform duration-300 ease-linear group-hover:rotate-180"
-
   return (
     <Button
       size="icon"
@@ -32,9 +27,9 @@ export const ToggleTheme = () => {
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
     >
       {resolvedTheme === "dark" ? (
-        <SunIcon className={cn("text-orange-300", iconClass)} />
+        <SunIcon className="!h-6 !w-6 text-orange-300" />
       ) : (
-        <MoonIcon className={cn("text-sky-950", iconClass)} />
+        <MoonIcon className="!h-6 !w-6 text-sky-950" />
       )}
       <span className="sr-only">Toggle Theme</span>
     </Button>

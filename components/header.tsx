@@ -45,7 +45,7 @@ const URLS: URLMetadata[] = [
   }
 ]
 
-export const Header = () => {
+export const Header = async () => {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-muted bg-background py-6 shadow backdrop-blur-sm">
       <nav className="container flex max-w-7xl items-center justify-between">
@@ -53,6 +53,7 @@ export const Header = () => {
           <Logo />
         </Link>
 
+        {/* Small Screens and above */}
         <NavigationMenu className="hidden xs:block">
           <NavigationMenuList>
             {URLS.map(({ title, url, target }) => (
@@ -75,13 +76,15 @@ export const Header = () => {
 
         <div className="flex items-center gap-x-4">
           <ToggleTheme />
+          {/* Mobile Screen */}
           <DropdownMenu>
-            <DropdownMenuTrigger className="rounded-md border p-1 text-muted-foreground outline-none transition-colors hover:bg-accent hover:text-foreground xs:hidden">
+            <DropdownMenuTrigger className="rounded-md border p-1 text-muted-foreground outline-none transition-colors hover:bg-accent hover:text-foreground data-[state=open]:bg-accent data-[state=open]:text-foreground xs:hidden">
               <AlignJustify className="h-6 w-6" />
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="mr-[1rem] w-[170px] shadow-sm shadow-muted-foreground xs:hidden">
+            <DropdownMenuContent className="mr-[1rem] w-[170px] xs:hidden">
               {URLS.map(({ title, url, target }) => (
                 <DropdownMenuItem
+                  asChild
                   key={title}
                   className="bg-transparent p-0 text-sm font-light text-muted-foreground transition-colors hover:text-foreground"
                 >

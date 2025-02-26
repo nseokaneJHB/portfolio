@@ -61,7 +61,15 @@ export const Filters = ({
 
       {/* Mobile Screen */}
       <Dialog>
-        <DialogTrigger className="flex h-fit items-center gap-2 rounded-lg border px-4 py-2 text-muted-foreground shadow-none outline-none transition-colors hover:bg-accent hover:text-foreground sm:hidden">
+        <DialogTrigger
+          disabled={isFetching}
+          className={cn(
+            "flex h-fit items-center gap-2 rounded-lg border px-4 py-2 text-muted-foreground shadow-none outline-none transition-colors hover:bg-accent hover:text-foreground disabled:bg-background disabled:text-muted-foreground sm:hidden",
+            {
+              "bg-accent text-foreground": projectType
+            }
+          )}
+        >
           <span>Filters:</span>
           <Filter className="h-6 w-6" />
         </DialogTrigger>
@@ -98,9 +106,9 @@ export const Filters = ({
                   <Label
                     key={type}
                     className={cn(
-                      "group flex items-center gap-x-2 text-lg text-muted-foreground hover:cursor-pointer",
+                      "group flex items-center gap-x-2 text-lg text-muted-foreground hover:cursor-pointer hover:text-foreground",
                       {
-                        "text-accent-foreground": isActive
+                        "text-foreground": isActive
                       }
                     )}
                   >
@@ -108,9 +116,9 @@ export const Filters = ({
                       id={type}
                       value={type}
                       className={cn(
-                        "h-6 w-6 bg-white group-hover:bg-accent [&>span>svg]:hidden",
+                        "h-6 w-6 border-muted-foreground group-hover:border-2 group-hover:border-sky-500 [&>span>svg]:hidden",
                         {
-                          "bg-sky-400 group-hover:bg-sky-500 data-[state=checked]:bg-sky-400 group-hover:data-[state=checked]:bg-sky-500":
+                          "border-sky-400 bg-sky-400 group-hover:bg-sky-500 data-[state=checked]:bg-sky-400 group-hover:data-[state=checked]:bg-sky-500":
                             isActive
                         }
                       )}
@@ -124,8 +132,9 @@ export const Filters = ({
           <hr />
           <DialogFooter className="gap-2">
             <Button
+              disabled={!projectType}
               onClick={() => setProjectType(null)}
-              className="h-fit w-full rounded-lg bg-yellow-400 p-4 hover:bg-yellow-600"
+              className="h-fit w-full rounded-lg bg-yellow-500 p-4 hover:bg-yellow-600"
             >
               Reset
             </Button>

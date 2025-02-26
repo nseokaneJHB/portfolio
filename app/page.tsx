@@ -43,7 +43,7 @@ const HomePage = async () => {
           <Link
             title="Projects"
             href="/projects"
-            className="mt-6 block h-fit w-full rounded-lg border bg-background p-4 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground xs:mx-auto xs:w-fit"
+            className="mx-auto mt-6 block h-fit w-fit rounded-lg border bg-background p-4 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
           >
             There&#39;s {total - limit} more projects...
           </Link>
