@@ -26,7 +26,7 @@ export const ProjectCard = ({ project }: { project: ProjectMetadata }) => {
         <p className="mb-3 line-clamp-1 text-sm text-muted-foreground transition-colors duration-500 ease-linear group-hover:text-foreground">
           {project.summary}
         </p>
-        <div className="mb-3 flex justify-start gap-2">
+        <div className="mb-3 flex justify-center gap-2 sm:justify-start">
           <Link
             title="More Details"
             href={`/projects/${project.slug}`}
