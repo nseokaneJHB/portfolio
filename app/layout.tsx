@@ -1,19 +1,19 @@
+import { PropsWithChildren } from "react"
+
+import "./globals.css"
+
 import type { Metadata, Viewport } from "next"
 import { Inter, Playfair_Display } from "next/font/google"
-import "./globals.css"
+
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import { cn } from "@/lib/utils"
 
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 
-import { Theme } from "@/providers/Theme"
-import { ReactQueryClientProvider } from "@/providers/ReactQueryClientProvider"
-
-import { Analytics } from "@vercel/analytics/react"
-import { SpeedInsights } from "@vercel/speed-insights/next"
-
-import { NuqsAdapter } from "nuqs/adapters/next/app"
+import { Providers } from "@/providers/Providers"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
 const playfair = Playfair_Display({
@@ -35,31 +35,20 @@ export const viewport: Viewport = {
   initialScale: 1
 }
 
-const RootLayout = ({
-  children
-}: Readonly<{
-  children: React.ReactNode
-}>) => {
+const RootLayout = ({ children }: Readonly<PropsWithChildren>) => {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body
-        className={cn(
-          "flex min-h-screen flex-col font-sans antialiased",
-          inter.variable,
-          playfair.variable
-        )}
+        suppressHydrationWarning
+        className={cn(inter.variable, playfair.variable)}
       >
-        <Theme>
-          <ReactQueryClientProvider>
-            <NuqsAdapter>
-              <Header />
-              <main className="grow pb-16 pt-40">{children}</main>
-              <Footer />
-              <Analytics />
-              <SpeedInsights />
-            </NuqsAdapter>
-          </ReactQueryClientProvider>
-        </Theme>
+        <Providers>
+          <Header />
+          <main className="grow pb-16 pt-40">{children}</main>
+          <Footer />
+        </Providers>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
