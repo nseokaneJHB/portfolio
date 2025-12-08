@@ -39,7 +39,7 @@ const URLS: URLMetadata[] = [
     title: "Contact"
   },
   {
-    url: "/Nolan-Seokane-Software-Developer-CV.pdf",
+    url: "/Nolan-Seokane-Software-Engineer-CV.pdf",
     title: "Download CV",
     target: "_blank"
   }
