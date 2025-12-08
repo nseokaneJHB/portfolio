@@ -76,25 +76,14 @@
 
 @layer base {
   * {
-    @apply border-border p-0 m-0 box-border;
+    @apply border-border p-0 m-0 box-border outline-ring/50;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground flex min-h-screen flex-col font-sans antialiased;
   }
 
   .title {
     @apply font-serif text-3xl font-bold underline decoration-border/75 decoration-2 underline-offset-8;
-  }
-}
-
-
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
   }
 }

@@ -26,9 +26,9 @@ export const Loading = ({
         })}
       />
       <p
-        className={cn("text-center font-bold tracking-tight", {
+        className={cn("text-center tracking-tight", {
           "text-md": size === "sm",
-          "text-md sm:text-3xl": size === "lg"
+          "text-md font-bold sm:text-3xl": size === "lg"
         })}
       >
         {title}
